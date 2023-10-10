@@ -19,6 +19,7 @@ set smarttab
 set softtabstop=4
 set tabstop=4
 set ignorecase
+set scrolloff=8
 
 " au VimEnter *  NERDTree " open nerdtree automatically
 
@@ -34,6 +35,8 @@ Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
+
+Plug 'Exafunction/codeium.vim' " Codeium AI extension
 
 Plug 'yaegassy/coc-intelephense'
 
@@ -68,6 +71,8 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
@@ -120,4 +125,11 @@ nnoremap <leader>gb <cmd>Telescope git_branches<CR>
 nnoremap <leader>gd <cmd>Telescope lsp_definitions<CR>
 nnoremap <leader>gr <cmd>Telescope lsp_references<CR>
 
-autocmd BufWritePre * :call CocAction('format')
+autocmd BufWritePre *.php :call CocAction('format')
+autocmd BufWritePre *.html :call CocAction('format')
+autocmd BufWritePre *.css :call CocAction('format')
+autocmd BufWritePre *.js :call CocAction('format')
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
