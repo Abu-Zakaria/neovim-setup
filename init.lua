@@ -3,14 +3,14 @@ vim.cmd.source(vimrc)
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "gopls", "quick_lint_js", "phpactor", "pyright" },
+    ensure_installed = { "gopls", "quick_lint_js", "phpactor", "pyright", "rust_analyzer", "html" },
 }
 
 require("lspconfig").gopls.setup {}
 require("lspconfig").quick_lint_js.setup {}
 require("lspconfig").pyright.setup {}
 require("lspconfig").phpactor.setup {}
-require("lspconfig").phpactor.setup {}
+require("lspconfig").rust_analyzer.setup {}
 
 require('telescope').setup{
   defaults = {
@@ -35,11 +35,11 @@ require("catppuccin").setup({
     flavour = "macchiato", -- latte, frappe, macchiato, mocha
 	background = { -- :h background
         light = "latte",
-        dark = "mocha",
+        dark = "macchiato",
     },
-    transparent_background = true,
+    transparent_background = false,
     show_end_of_buffer = false, -- show the '~' characters after the end of buffers
-    term_colors = false,
+    term_colors = true,
     dim_inactive = {
         enabled = false,
         shade = "dark",
@@ -78,7 +78,7 @@ vim.cmd.colorscheme "catppuccin"
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { 'go', 'javascript' },
+  ensure_installed = { 'go', 'javascript', 'html' },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,

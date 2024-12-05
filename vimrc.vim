@@ -1,7 +1,7 @@
 " Options
 let mapleader=" "
 set clipboard=unnamedplus " Enables the clipboard between Vim/Neovim and other applications.
-set completeopt=noinsert,menuone,preview " Modifies the auto-complete menu to behave more like an IDE.
+" set completeopt=noinsert,menuone,preview " Modifies the auto-complete menu to behave more like an IDE.
 set hidden " Hide unused buffers
 set autoindent " Indent a new line
 set inccommand=split " Show replacements in a split screen
@@ -19,7 +19,9 @@ set smarttab
 set softtabstop=4
 set tabstop=4
 set ignorecase
-set scrolloff=8
+set scrolloff=4
+set encoding=UTF-8
+" set expandtab
 
 " au VimEnter *  NERDTree " open nerdtree automatically
 
@@ -42,6 +44,8 @@ Plug 'yaegassy/coc-intelephense'
 
 Plug 'mattn/emmet-vim'
 
+Plug 'rust-lang/rust.vim'
+
 " Themes
 " Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'Rigellute/shades-of-purple.vim'
@@ -57,8 +61,6 @@ Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'miyakogi/conoline.vim'
-
-set encoding=UTF-8
 
 Plug 'nvim-lua/plenary.nvim'
 
@@ -126,10 +128,24 @@ nnoremap <leader>gd <cmd>Telescope lsp_definitions<CR>
 nnoremap <leader>gr <cmd>Telescope lsp_references<CR>
 
 autocmd BufWritePre *.php :call CocAction('format')
-autocmd BufWritePre *.html :call CocAction('format')
 autocmd BufWritePre *.css :call CocAction('format')
 autocmd BufWritePre *.js :call CocAction('format')
 
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+
+" codeium
+let g:codeium_manual = v:true
+let g:codeium_disable_bindings = 1
+imap <script><silent><nowait><expr> <TAB> codeium#Accept()
+imap <C-e> <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <C-q> <Cmd>call codeium#CycleCompletions(-1)<CR>
+imap <C-]> <Cmd>call codeium#Complete()<CR>
+
+imap <C-x>   <Cmd>call codeium#Clear()<CR>
+
+" rust
+let g:rustfmt_autosave = 1
+
+let g:go_fmt_command = "goimports"
 
